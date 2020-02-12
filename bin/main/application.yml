@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/uber?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    username: uber
+    password: bitc5600
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 2400546060259431
+            client-secret: 228f46dbbfdd948aebdf5ee8c6cf49b8
+            scope:
+            - email
+            
