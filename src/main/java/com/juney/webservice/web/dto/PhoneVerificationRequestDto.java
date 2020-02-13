@@ -6,4 +6,5 @@ import lombok.Getter;
 public class PhoneVerificationRequestDto {
 	
 	private String payload;
+	private String key;
 }

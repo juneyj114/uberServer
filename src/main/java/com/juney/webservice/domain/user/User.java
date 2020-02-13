@@ -45,10 +45,10 @@ public class User extends BaseTimeEntity{
 	@Column(nullable = false)
 	private boolean verifiedEmail = false;
 	
-	@Column(nullable = false)
+	
 	private String firstName;
 	
-	@Column(nullable = false)
+	
 	private String lastName;
 	
 	private Long fbId;
@@ -100,7 +100,7 @@ public class User extends BaseTimeEntity{
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private Role role;
+	private Role role = Role.PASSENGER;
 	
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;

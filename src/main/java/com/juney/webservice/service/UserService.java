@@ -126,6 +126,21 @@ public class UserService {
 			return null;
 		}
 	}
+
+	@Transactional
+	public Long saveOnlyPhone(String phone) {
+		User user = User.builder().phoneNumber(phone).build();
+		user.setRole(Role.PASSENGER);
+		userRepository.save(user);
+		return user.getId();
+		
+	}
+	
+	@Transactional
+	public Long findByPhone(String phone) {
+		User user = userRepository.findByPhoneNumber(phone);
+		return user.getId();
+	}
 	
 
 }

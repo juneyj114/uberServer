@@ -58,7 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 					Authentication authentication) throws IOException, ServletException {
 				
-				System.out.println(Jws.createJws(Long.parseLong(httpSession.getAttribute("id").toString())));
+				String jwt = Jws.createJws(Long.parseLong(httpSession.getAttribute("id").toString()));
+				response.sendRedirect("http://localhost:3000/token");
 				
 			}
 		});
