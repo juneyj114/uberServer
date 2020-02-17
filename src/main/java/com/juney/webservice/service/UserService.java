@@ -19,6 +19,7 @@ import com.juney.webservice.domain.verification.VerificationRepository;
 import com.juney.webservice.firebase.MyFirebase;
 import com.juney.webservice.util.SendEmail;
 import com.juney.webservice.web.dto.RideRequestMessageDto;
+import com.juney.webservice.web.dto.UserMenuResponseDto;
 import com.juney.webservice.web.dto.UserMovementRequestDto;
 import com.juney.webservice.web.dto.UserSaveRequestDto;
 import com.juney.webservice.web.dto.UserUpdateRequestDto;
@@ -140,6 +141,21 @@ public class UserService {
 	public Long findByPhone(String phone) {
 		User user = userRepository.findByPhoneNumber(phone);
 		return user.getId();
+	}
+
+	public UserMenuResponseDto findUserMenu(Long id) {
+		try {
+			User user = userRepository.findById(id).get();
+			return UserMenuResponseDto.builder()
+									.profilePhoto(user.getProfilePhoto())
+									.fullName(user.getFullName())
+									.isDriving(user.isDriving())
+									.build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 

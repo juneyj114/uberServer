@@ -11,16 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.firebase.messaging.FirebaseMessagingException;
 import com.juney.webservice.config.auth.dto.UserPrincipal;
 import com.juney.webservice.domain.user.User;
-import com.juney.webservice.firebase.MyFirebase;
 import com.juney.webservice.service.UserService;
 import com.juney.webservice.service.VerificationService;
 import com.juney.webservice.web.dto.FirebaseTokenRequestDto;
+import com.juney.webservice.web.dto.UserMenuResponseDto;
 import com.juney.webservice.web.dto.UserMovementRequestDto;
 import com.juney.webservice.web.dto.UserSaveRequestDto;
 import com.juney.webservice.web.dto.UserUpdateRequestDto;
@@ -34,7 +33,15 @@ public class UserController {
 
 	private final UserService userService;
 	private final VerificationService verificationService;
-	private final MyFirebase myFirebase;
+	
+	@GetMapping("/user")
+	public ResponseEntity<UserMenuResponseDto> getUserMenu(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+		UserMenuResponseDto dto = userService.findUserMenu(userPrincipal.getId());
+		if(dto == null) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<UserMenuResponseDto>(dto, HttpStatus.ACCEPTED);
+	}
 	
 	@PostMapping("/user")
 	public ResponseEntity<String> EmailSignUp(@RequestBody UserSaveRequestDto userSaveRequestDto) throws IOException {
