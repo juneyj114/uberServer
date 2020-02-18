@@ -19,7 +19,7 @@ import com.juney.webservice.domain.verification.VerificationRepository;
 import com.juney.webservice.firebase.MyFirebase;
 import com.juney.webservice.util.SendEmail;
 import com.juney.webservice.web.dto.RideRequestMessageDto;
-import com.juney.webservice.web.dto.UserMenuResponseDto;
+import com.juney.webservice.web.dto.UserResponseDto;
 import com.juney.webservice.web.dto.UserMovementRequestDto;
 import com.juney.webservice.web.dto.UserSaveRequestDto;
 import com.juney.webservice.web.dto.UserUpdateRequestDto;
@@ -63,10 +63,10 @@ public class UserService {
 	public int updateMyProfile(Long id, UserUpdateRequestDto dto) {
 		try {
 			User user = userRepository.findById(id).get();
-			if(dto.getPassword() != null) {
-				String encodedPassword = encoder.encode(dto.getPassword());
-				dto.setPassword(encodedPassword);
-			}
+//			if(dto.getPassword() != null) {
+//				String encodedPassword = encoder.encode(dto.getPassword());
+//				dto.setPassword(encodedPassword);
+//			}
 			user.updateProfile(dto);
 			return 1;
 		} catch (Exception e) {
@@ -143,10 +143,13 @@ public class UserService {
 		return user.getId();
 	}
 
-	public UserMenuResponseDto findUserMenu(Long id) {
+	public UserResponseDto findUserMenu(Long id) {
 		try {
 			User user = userRepository.findById(id).get();
-			return UserMenuResponseDto.builder()
+			return UserResponseDto.builder()
+									.firstName(user.getFirstName())
+									.lastName(user.getLastName())
+									.email(user.getEmail())
 									.profilePhoto(user.getProfilePhoto())
 									.fullName(user.getFullName())
 									.isDriving(user.isDriving())

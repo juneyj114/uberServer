@@ -123,11 +123,11 @@ public class User extends BaseTimeEntity{
 		this.firstName = dto.getFirstName();
 		this.lastName = dto.getLastName();
 		this.email = dto.getEmail();
-		if(dto.getPassword() != null) {
-			this.password = dto.getPassword();
-		}
-		this.profilePhoto = dto.getProfilePhoto();
-		this.age = dto.getAge();
+//		if(dto.getPassword() != null) {
+//			this.password = dto.getPassword();
+//		}
+//		this.profilePhoto = dto.getProfilePhoto();
+//		this.age = dto.getAge();
 	}
 
 	public void updateMovement(UserMovementRequestDto dto) {

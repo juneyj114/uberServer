@@ -7,8 +7,14 @@ import lombok.Getter;
 @AllArgsConstructor
 @Builder
 @Getter
-public class UserMenuResponseDto {
+public class UserResponseDto {
 
+	private String firstName;
+	
+	private String lastName;
+	
+	private String email;
+	
 	private String profilePhoto;
 	
 	private String fullName;

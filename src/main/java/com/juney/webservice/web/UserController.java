@@ -19,7 +19,7 @@ import com.juney.webservice.domain.user.User;
 import com.juney.webservice.service.UserService;
 import com.juney.webservice.service.VerificationService;
 import com.juney.webservice.web.dto.FirebaseTokenRequestDto;
-import com.juney.webservice.web.dto.UserMenuResponseDto;
+import com.juney.webservice.web.dto.UserResponseDto;
 import com.juney.webservice.web.dto.UserMovementRequestDto;
 import com.juney.webservice.web.dto.UserSaveRequestDto;
 import com.juney.webservice.web.dto.UserUpdateRequestDto;
@@ -35,12 +35,12 @@ public class UserController {
 	private final VerificationService verificationService;
 	
 	@GetMapping("/user")
-	public ResponseEntity<UserMenuResponseDto> getUserMenu(@AuthenticationPrincipal UserPrincipal userPrincipal) {
-		UserMenuResponseDto dto = userService.findUserMenu(userPrincipal.getId());
+	public ResponseEntity<UserResponseDto> getUserMenu(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+		UserResponseDto dto = userService.findUserMenu(userPrincipal.getId());
 		if(dto == null) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<UserMenuResponseDto>(dto, HttpStatus.ACCEPTED);
+		return new ResponseEntity<UserResponseDto>(dto, HttpStatus.ACCEPTED);
 	}
 	
 	@PostMapping("/user")
