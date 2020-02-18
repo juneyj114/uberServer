@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -95,7 +96,6 @@ public class User extends BaseTimeEntity{
 	private List<Ride> ridesAsDriver;
 	
 	@OneToMany(mappedBy = "user")
-	@JsonIgnoreProperties("user")
 	private List<Place> places;
 	
 	@Enumerated(EnumType.STRING)
@@ -126,7 +126,7 @@ public class User extends BaseTimeEntity{
 //		if(dto.getPassword() != null) {
 //			this.password = dto.getPassword();
 //		}
-//		this.profilePhoto = dto.getProfilePhoto();
+		this.profilePhoto = dto.getProfilePhoto();
 //		this.age = dto.getAge();
 	}
 

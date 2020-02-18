@@ -13,7 +13,7 @@ public class UserUpdateRequestDto {
 	private String lastName;
 	private String email;
 //	private String password;
-//	private String profilePhoto;
+	private String profilePhoto;
 //	private int age;
 	
 //	public void setPassword(String password) {
@@ -30,7 +30,7 @@ public class UserUpdateRequestDto {
 					.lastName(lastName)
 					.email(email)
 //					.password(password)
-//					.profilePhoto(profilePhoto)
+					.profilePhoto(profilePhoto)
 					.build();
 	}
 	

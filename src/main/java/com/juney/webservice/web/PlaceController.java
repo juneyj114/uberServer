@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.juney.webservice.config.auth.dto.UserPrincipal;
 import com.juney.webservice.domain.place.Place;
 import com.juney.webservice.service.PlaceService;
+import com.juney.webservice.web.dto.PlaceResponseDto;
 import com.juney.webservice.web.dto.PlaceSaveRequestDto;
 import com.juney.webservice.web.dto.PlaceUpdateRequestDto;
 
@@ -60,9 +61,9 @@ public class PlaceController {
 		return new ResponseEntity<>("내부오류", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping("place")
-	public ResponseEntity<List<Place>> getPlaces(@AuthenticationPrincipal UserPrincipal userPrincipal){
-		List<Place> places = placeService.findById(userPrincipal.getId()); 
+	@GetMapping("/place")
+	public ResponseEntity<List<PlaceResponseDto>> getPlaces(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		List<PlaceResponseDto> places = placeService.findById(userPrincipal.getId()); 
 		return new ResponseEntity<>(places, HttpStatus.ACCEPTED);
 	}
 }
