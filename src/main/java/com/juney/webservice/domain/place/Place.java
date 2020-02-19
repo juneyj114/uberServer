@@ -49,8 +49,7 @@ public class Place extends BaseTimeEntity{
 	private User user;
 
 	public void update(PlaceUpdateRequestDto dto) {
-		this.name = dto.getName();
-		this.isFav = dto.isFav();
+		this.isFav = !isFav;
 	}
 	
 }
